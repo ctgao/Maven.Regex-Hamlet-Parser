@@ -1,12 +1,13 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by thook on 10/7/15.
  */
 public class HamletParser {
-
     private String hamletData;
 
     public HamletParser(){
@@ -34,6 +35,18 @@ public class HamletParser {
 
     public String getHamletData(){
         return hamletData;
+    }
+
+    public String change(String toFind, String replaceWith){
+        Pattern pattern = Pattern.compile(toFind, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(hamletData);
+        return matcher.replaceAll(replaceWith);
+    }
+
+    public boolean find(String s){
+        Pattern pattern = Pattern.compile(s, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(hamletData);
+        return matcher.find();
     }
 
 }
