@@ -38,9 +38,12 @@ public class HamletParser {
     }
 
     public String change(String toFind, String replaceWith){
-        Pattern pattern = Pattern.compile(toFind, Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile(toFind);
         Matcher matcher = pattern.matcher(hamletData);
-        return matcher.replaceAll(replaceWith);
+        String middleGround = matcher.replaceAll(replaceWith);
+        Pattern patternUpper = Pattern.compile(toFind.toUpperCase());
+        Matcher matcherUpper = patternUpper.matcher(middleGround);
+        return matcherUpper.replaceAll(replaceWith.toUpperCase());
     }
 
     public boolean find(String s){
